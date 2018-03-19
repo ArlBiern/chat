@@ -1,10 +1,10 @@
 const express = require('express');
 const http = require('http');
-const socketIo = require('socekt.io');
+const socketIo = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = socektIo(server);
+const io = socketIo(server);
 const UsersService = require('./UsersService');
 const usersService = new UsersService;
 
@@ -17,16 +17,16 @@ app.get('/', function(req, res) {
 io.on('connection', function(socket){
 	socket.on('join', function(name){
 		usersService.addUser({
-			id: socekt.id;
+			id: socket.id,
 			name
 		});
-		io.emmit('update', {
+		io.emit('update', {
 			users: usersService.getAllUsers()
 		});
 	});
 	socket.on('disconnect', () => {
 		usersService.removeUser(socket.id);
-		socket.broadcast.emmit('update', {
+		socket.broadcast.emit('update', {
 			users: usersService.getAllUsers()
 		});
 	});
@@ -42,3 +42,5 @@ io.on('connection', function(socket){
 server.listen(3000, function(){
 	console.log('listening on *:3000');
 });
+
+
