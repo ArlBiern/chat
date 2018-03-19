@@ -1,0 +1,21 @@
+.MessageList {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 75vw;
+    padding: 20px;
+    background-color: #8169A0;
+    font-size: 25px;
+
+}
+
+.Message {
+	background-color: #B4AEBB;
+	color: #000;
+	width: 70%;
+	display: inline-block;
+	margin: 5px;
+	padding: 2px;
+	border-radius: 5px;
+}
